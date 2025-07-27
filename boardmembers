@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <title>Board Members</title>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const sidebarPath1s = document.getElementsByClassName("sidebar-path-1");
+                const sidebarPath2s = document.getElementsByClassName("sidebar-path-2");
+                const sidebarDropdowns = document.getElementsByClassName("sidebar-dropdown");
+                const sidebarSVGs = document.getElementsByClassName("sidebar-svg");
+                for (let i=0; i < sidebarPath1s.length; i++) {
+                    const width = sidebarDropdowns[i].offsetWidth;
+                    const height = sidebarDropdowns[i].offsetHeight;
+                    const perimeter = 2*width + 2*height;
+                    const dash = perimeter / 2
+                    document.getElementById(sidebarSVGs[i].getAttribute("id")).setAttribute("width", width);
+                    document.getElementById(sidebarSVGs[i].getAttribute("id")).setAttribute("height", height);
+                    document.getElementById(sidebarPath1s[i].getAttribute("id")).setAttribute("d", `M0 0 L${width} 0 L${width} ${height}`);
+                    document.getElementById(sidebarPath2s[i].getAttribute("id")).setAttribute("d", `M${width} ${height} L0 ${height} L0 0`);
+                }
+            });
+        </script>
+                        
+        <script type="module">
+        import { onScroll, animate, createTimeline, utils } from "/anime.esm.js";
+
+        animate("#bottom", {
+            opacity: {to: 1, from: 0, ease: "inOutQuad"},
+            autoplay: onScroll({
+                container: "#body",
+                target: "#bottom",
+                enter: {target: "top-=3vh", container: "top+=90vh"},
+                leave: {target: "bottom-=3vh", container: "top+=100vh"},
+                sync: true,
+                debug: false
+            }),
+            frameRate: 120
+        });
+        </script>
+                <style>
+            body {
+                background-color: #050807;
+                color: #F7F7F7;
+                margin: 0;
+                padding: 0;
+            }
+            a {
+                color:#FFC600;
+                text-decoration:none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            
+        #header {
+            z-index: 2;
+        }
+        #tag {
+            position: absolute;
+            top: 2vh;
+            left: 2vw;
+        }
+        #logo {
+            width: 10vw;
+            height: 10vw; 
+        }
+        #name {
+            position: absolute;
+            top: 3vh;
+            left: 10vw;
+        }
+                    
+        #sidebar {
+                position: absolute;
+                top: 2vh;
+                left: 48vw;
+                display: grid;
+                grid: 100% / 5fr 12fr 8fr 6fr 7fr 12fr;
+                column-gap: 3vw;
+                padding: 1rem;
+            }
+        #sidebar a {
+            color: #F7F7F7;
+            text-decoration: none;
+        }
+        #sidebar a:hover {
+            text-decoration: underline;
+        }
+            .sidebar-section {
+                position: relative;
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: flex-start;
+            }
+            .sidebar-head {
+                opacity: 1;
+                z-index: 5;
+                color: #FFC600;
+            }
+            .sidebar-dropdown {
+                display: inline;
+                position: absolute;
+                left: 50%;
+                top: 3vh;
+                transform: translate(-50%,0%);
+                opacity: 0;
+                transition: opacity 0.5s;
+                padding: 0.25vh 0.25vw;
+                text-align: center;
+                color: red;
+            }
+            .sidebar-svg {
+                position: absolute;
+                left: 50%;
+                top: 3vh;
+                transform: translate(-50%,0%);
+                stroke-dasharray: 200%;
+                stroke-dashoffset: 200%;
+                transition: opacity 0.5s, stroke-dashoffset 0.5s;
+            }
+            #sidebar > div:hover .sidebar-dropdown {
+                opacity: 1;
+            }
+            #sidebar > div:hover .sidebar-svg {
+                opacity: 1;
+                stroke-dashoffset: 0%;
+            }
+            #sidebar-about {
+                grid-item: 1;
+            }
+            #sidebar-achievements {
+                grid-item: 2;
+            }
+            #sidebar-activities {
+                grid-item: 3;
+            }
+            #sidebar-events {
+                grid-item: 4;
+            }
+            #sidebar-gallery {
+                grid-item: 5;
+            }
+            #sidebar-get-involved {
+                grid-item: 6;
+            }
+                    #flexcontainer {
+                display: flex;
+                flex-direction: column;
+                margin: 20vh 0vw 50vh 0vw;
+                padding: 2vh 2vw;
+            }
+            
+        #bottom {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            gap: 35rem;
+            color: #000000;
+            background: #FFFFFF;
+            opacity: 0;
+            margin: 0;
+            line-height: 1.75rem;
+            height:18rem;
+        }
+        #nav {
+            font-style: normal;
+        }
+        svg {
+            pointer-events: none;
+                </style>
+    </head>
+
+    <body>
+        
+        <div id="header">
+            <div id="tag">
+            <a href="/">
+                <img src="/images/logo.png" id="logo">
+                <span id="name"><h1>MVHS&nbspBMES</h1></span>
+            </a>
+        </div>
+                
+        <div id="sidebar">
+            <div id="sidebar-about" class="sidebar-section">
+                <div class="sidebar-head">
+                    About<br>
+                </div>
+                <svg id="sidebar-about-svg" class="sidebar-svg" width="100" height="100" viewBox="0 0 100% 100%">
+                    <path id="sidebar-about-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                    <path id="sidebar-about-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                </svg>
+                <div class="sidebar-dropdown">
+                    <a href="/aboutus">About&nbspUs</a><br>
+                    <a href="/boardmembers">Board</a><br>
+                </div>
+            </div>
+            <div id="sidebar-achievements" class="sidebar-section">
+                <div class="sidebar-head">
+                    Achievements
+                </div>
+                <svg id="sidebar-achievements-svg" class="sidebar-svg" width="100" height="100">
+                    <path id="sidebar-achievements-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                    <path id="sidebar-achievements-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                </svg>
+                <div class="sidebar-dropdown">
+                    <a href="">Awards</a><br>
+                    <a href="">Individual</a><br>
+                </div>
+            </div>
+            <div id="sidebar-activities" class="sidebar-section">
+                        <div class="sidebar-head">
+                            Activities
+                        </div>
+                        <svg id="sidebar-activities-svg" class="sidebar-svg" width="100" height="100">
+                            <path id="sidebar-activities-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                            <path id="sidebar-activities-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                        </svg>
+                        <div class="sidebar-dropdown">
+                            <a href="">Competitions</a><br>
+                            <a href="">Research</a><br>
+                        </div>
+            </div>
+            <div id="sidebar-events" class="sidebar-section">
+                <div class="sidebar-head">
+                Events
+                </div>
+                <svg id="sidebar-events-svg" class="sidebar-svg" width="100" height="100">
+                    <path id="sidebar-events-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                    <path id="sidebar-events-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                </svg>
+                <div class="sidebar-dropdown">
+                            <a href="">Upcoming</a><br>
+                            <a href="">Archive</a><br>
+                </div>
+            </div>
+            <div id="sidebar-gallery" class="sidebar-section">
+                        <div class="sidebar-head">
+                        Gallery
+                        </div>
+                        <svg id="sidebar-gallery-svg" class="sidebar-svg" width="100" height="100">
+                            <path id="sidebar-gallery-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                            <path id="sidebar-gallery-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                        </svg>
+                        <div class="sidebar-dropdown">
+                            <a href="">Photos</a><br>
+                        </div>
+            </div>
+            <div id="sidebar-get-involved" class="sidebar-section">
+                        <div class="sidebar-head">
+                        Get&nbspInvolved
+                        </div>
+                        <svg id="sidebar-get-involved-svg" class="sidebar-svg" width="100" height="100">
+                            <path id="sidebar-get-involved-path1" class="sidebar-path-1" d="M0 0 L 100 0 L 100 100" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                            <path id="sidebar-get-involved-path2" class="sidebar-path-2" d="M100 100 L 0 100 L 0 0" style="fill: none; stroke: #FFC600; stroke-width: 1" />
+                        </svg>
+                        <div class="sidebar-dropdown">
+                            <a href="">Join&nbspUs</a><br>
+                            <a href="">Donate</a><br>
+                        </div>
+            </div>
+        </div>
+                <div id="flexcontainer">
+            <span style="text-align: center; font-size: 2rem;"><h1>MEET THE BOARD</h1></span>
+            <h2>AYAN</h2><br>
+            I am Ayan<br>
+            Lord of the flies<br>
+            I am the end to all<br>
+            I shall feast upon your cries<br>
+            <br>
+            I am Ayan<br>
+            The lion of this club<br>
+            I stand upon my mountain peak<br>
+            Soaking in my tub<br>
+            <br>
+            I am Ayan<br>
+            None may oppose me<br>
+            Many have tried<br>
+            But fate always chose me<br>
+            <br>
+            I am Ayan<br>
+            For nothing do I wish<br>
+            For everything I would ever want<br>
+            Is served upon a dish<br>
+            <br>
+            I am Ayan<br>
+            Ruler of this land<br>
+            I own all that I see<br>
+            And defecate on this sand<br>
+        </div>
+        <div id="bottom">
+        <div id="nav">
+            <h3>Navigation</h3>
+            <span>About</span><br>
+            <span>Join</span><br>
+            <span>Achievements</span><br>
+            <span>Activities</span><br>
+            <span>Events</span><br>
+            <span>Gallery</span><br>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <a href="https://instagram.com/mvhsbmes">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"> <!-- insta -->
+                    <path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://facebook.com/profile.php?id=61577010185763">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"> <!-- fb -->
+                    <path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://x.com/MVHSBMES">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"> <!-- x -->
+                    <path d="M18.42,14.009L27.891,3h-2.244l-8.224,9.559L10.855,3H3.28l9.932,14.455L3.28,29h2.244l8.684-10.095,6.936,10.095h7.576l-10.301-14.991h0Zm-3.074,3.573l-1.006-1.439L6.333,4.69h3.447l6.462,9.243,1.006,1.439,8.4,12.015h-3.447l-6.854-9.804h0Z">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://linkedin.com/in/mvhs-bmes-21b040370">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"> <!-- linkedin -->
+                    <path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://youtube.com/channel/UC7A-6E^UuEsbzlHEw-uiVMg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"> <!-- yt -->
+                    <path d="M31.331,8.248c-.368-1.386-1.452-2.477-2.829-2.848-2.496-.673-12.502-.673-12.502-.673,0,0-10.007,0-12.502,.673-1.377,.37-2.461,1.462-2.829,2.848-.669,2.512-.669,7.752-.669,7.752,0,0,0,5.241,.669,7.752,.368,1.386,1.452,2.477,2.829,2.847,2.496,.673,12.502,.673,12.502,.673,0,0,10.007,0,12.502-.673,1.377-.37,2.461-1.462,2.829-2.847,.669-2.512,.669-7.752,.669-7.752,0,0,0-5.24-.669-7.752ZM12.727,20.758V11.242l8.364,4.758-8.364,4.758Z">
+                    </path>
+                </svg>
+            </a>
+            <br>
+            bmes.mvhs@gmail.com
+        </div>
+    </div>
+        </body>
+</html>
